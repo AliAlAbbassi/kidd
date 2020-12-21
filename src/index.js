@@ -120,7 +120,11 @@ const start = async () => {
     },
   })
 
-  const server = new ApolloServer({ schema, context: accountsGraphQL.context })
+  const server = new ApolloServer({
+    schema,
+    context: accountsGraphQL.context,
+    cors: { credentials: true, origin: '*' },
+  })
 
   // The `listen` method launches a web server.
   server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
